@@ -21,13 +21,14 @@ import java.util.Optional;
 @RestController
 @RequestMapping("v1")
 public class StudentEndpoint {
+
     @Autowired
     private UsuarioService usuarioService;
 
     private final StudentRepository studentDAO;
 
     @PostMapping(path = "user/admin/students")
-    private final UsuarioDTOS salvar(@RequestBody UsuarioDTOS usuarioDTOS) {
+    public UsuarioDTOS salvar(@RequestBody UsuarioDTOS usuarioDTOS) {
         return usuarioService.salvar(usuarioDTOS);
     }
 
