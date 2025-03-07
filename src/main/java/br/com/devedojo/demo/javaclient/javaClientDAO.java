@@ -1,5 +1,6 @@
 package br.com.devedojo.demo.javaclient;
 
+import br.com.devedojo.demo.handler.RestResponseExceptionHander;
 import br.com.devedojo.demo.model.PageableResponse;
 import br.com.devedojo.demo.model.Student;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -13,10 +14,12 @@ public class javaClientDAO {
     private RestTemplate restTemplate = new RestTemplateBuilder()
             .rootUri("http://localhost:8080/v1/protected/students")
             .basicAuthentication("paulo", "123456789")
+            .errorHandler(new RestResponseExceptionHander())
             .build();
     private RestTemplate restTemplateAdmin = new RestTemplateBuilder()
             .rootUri("http://localhost:8080/v1/admin/students")
             .basicAuthentication("paulo", "123456789")
+            .errorHandler(new RestResponseExceptionHander())
             .build();
 
     public Student findById(long id) {

@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+
 @ControllerAdvice
 public class RestResponseExceptionHander extends DefaultResponseErrorHandler {
     @Override
@@ -18,7 +20,8 @@ public class RestResponseExceptionHander extends DefaultResponseErrorHandler {
     @Override
     public boolean hasError(ClientHttpResponse response) throws IOException {
         System.out.println("Doing something with status code"+response.getStatusCode());
-        System.out.println("Doing something with body"+ IOUtils.toString(response.getBody(),"UTF-8"));
-        return super.hasError(response);
+        System.out.println("Doing something with body"+ IOUtils.toString(response.getBody(), StandardCharsets.UTF_8));
+//        return super.hasError(response);
+        return false;
     }
 }

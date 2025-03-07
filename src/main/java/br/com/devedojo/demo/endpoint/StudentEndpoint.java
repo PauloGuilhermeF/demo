@@ -1,5 +1,6 @@
 package br.com.devedojo.demo.endpoint;
 
+
 import br.com.devedojo.demo.Service.UsuarioService;
 import br.com.devedojo.demo.dtos.UsuarioDTOS;
 import br.com.devedojo.demo.error.ResourceNotFoundException;
@@ -16,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-
 
 @RestController
 @RequestMapping("v1")
@@ -40,6 +40,7 @@ public class StudentEndpoint {
     @GetMapping(path = "protected/students")
 //    @ApiOperation(value = "Return a list with all students", response = Student[].class)
     public ResponseEntity<?> listAll(Pageable pageable) {
+        System.out.println(studentDAO.findAll());
         return new ResponseEntity<>(studentDAO.findAll(pageable), HttpStatus.OK);
     }
 
